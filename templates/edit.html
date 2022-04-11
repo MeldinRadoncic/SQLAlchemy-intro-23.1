@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Edit  {%endblock%}
+
+{% block content %}
+
+<h1>EDIT {{user.first_name}} {{user.last_name}}</h1>
+
+<!-- Submit all updates made on user info to DB  -->
+<form action="/edit/{{user.id}}" method="POST">
+    <input type="text" name="first_name" placeholder="{{user.first_name}}" >
+    <input type="text" name="last_name" placeholder="{{user.last_name}}" >
+    <input type="text" name="image_url" placeholder="{{user.image_url}}" >
+    <button>SAVE</button>
+</form>
+
+<a href="/">CANCEL</a>
+
+{% endblock %}

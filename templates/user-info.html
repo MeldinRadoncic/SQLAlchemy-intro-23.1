@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} {{user.first_name}} {%endblock%}
+
+{% block content %}
+
+<h1>My name is:</h1>
+
+<!-- List user information from DB -->
+<ul>
+<li>FIRST NAME: {{user.first_name}}</li>
+<li>LAST NAME: {{user.last_name}}</li>
+<li><a href="{{user.image_url}}">PHOTO</a></li>
+</ul>
+
+<div class="edit-delete-buttons">
+
+<!-- Edit and Delete buttons form -->
+<form>
+    <button formaction="/edit/{{user.id}}" formmethod="GET">EDIT</button>
+    <button class="btn-delete" formaction="/delete/{{user.id}}" formmethod="POST">DELETE</button>
+  </form>
+</div>
+<a href="/">GO BACK</a>
+{% endblock %}

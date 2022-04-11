@@ -1,0 +1,87 @@
+body {
+    background:#9900F0;
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* main container for all pages */
+.main-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #FDEFF4;
+    min-width:30%;
+    padding: 2rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow:1rem 2rem 2rem #000;
+}
+
+h1 {
+    font-size:4rem;
+}
+
+ul li  {
+    list-style:none;
+}
+
+ul li a {
+    font-size:2rem;
+    color: #000;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    background-color: green;
+    color:white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ADD USER BUTTON */
+.btn-add-user {
+    width: 100px;
+    height: 30px;
+    background-color:blue;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    padding: 1rem;
+}
+
+input {
+    width: 100%;
+    height: 30px;
+    border: 2px solid black;
+    margin:1rem;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+
+.edit-delete-buttons form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-delete {
+    background-color: red;
+    color: white;
+}
