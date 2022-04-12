@@ -3,16 +3,21 @@
 
 {% block content %}
 
-<h1>EDIT {{user.first_name}} {{user.last_name}}</h1>
+<h1 class="display-2">Edit {{user.first_name}} {{user.last_name}}</h1>
 
 <!-- Submit all updates made on user info to DB  -->
 <form action="/edit/{{user.id}}" method="POST">
-    <input type="text" name="first_name" placeholder="{{user.first_name}}" >
-    <input type="text" name="last_name" placeholder="{{user.last_name}}" >
-    <input type="text" name="image_url" placeholder="{{user.image_url}}" >
-    <button>SAVE</button>
+    <div class="form-group">
+    <label for="first">First Name</label>
+    <input type="text" id="first" class="form-control form-control-md mt-2" name="first_name" placeholder="{{user.first_name}}" >
+    <label for="last">Last Name</label>
+    <input type="text" id="last" class="form-control form-control-md mt-2" name="last_name" placeholder="{{user.last_name}}" >
+    <label for="image">Url</label>
+    <input type="text" class="form-control form-control-md mt-2" name="image_url" placeholder="{{user.image_url}}" >
+    <button class="btn btn-lg mt-3 btn-success">SAVE</button>
+</div>
 </form>
 
-<a href="/">CANCEL</a>
+<a class="btn btn-white btn-lg" href="/">Cancel</a>
 
 {% endblock %}

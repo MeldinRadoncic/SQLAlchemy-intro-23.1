@@ -2,14 +2,16 @@
 {% block title %} Users {%endblock%}
 
 {% block content%}
-<h1>USERS</h1>
+<h1 class="display-1">USERS</h1>
 
 <!-- List all the Users from DB on the Screen -->
+
 <ul>
     {% for u in users %}
     <li><a href="{{u.id}}">{{u.first_name}} {{u.last_name}}</a></li>
     {% endfor %}
 </ul>
 
-    <a class="btn-add-user" href="/add-user">Add User</a>
+    <a class="btn btn-primary btn-lg" href="/add-user">Add User</a>
 {% endblock %}
+

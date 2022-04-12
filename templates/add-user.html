@@ -2,14 +2,19 @@
 {% block title %} Add User {%endblock%}
 
 {% block content %}
-<h1>Add New User</h1>
+<h1 class="display-1">Add New User</h1>
 
 <form action="/add-user" method="POST">
-    <input type="text" name="first_name" placeholder="Enter First Name">
-    <input type="text" name="last_name" placeholder="Enter Last Name">
-    <input type="text" name="image_url" placeholder="Enter Image Url">
-    <button>Add</button>
+    <div class="form-group">
+    <label for="first">First Name</label>
+    <input type="text" id="first" class="form-control form-control-md mt-2" name="first_name" placeholder="Enter First Name">
+    <label for="last">Last Name</label>
+    <input type="text" id="last" class="form-control form-control-md mt-2" name="last_name" placeholder="Enter Last Name">
+    <label for="image">Url</label>
+    <input type="text" id="image" class="form-control form-control-md mt-2" name="image_url" placeholder="Enter Image Url">
+    <button class="btn btn-lg mt-2 btn-primary">Save User</button>
+</div>
 </form>
-<a class="btn-go-back" href="/">GO BACK</a>
+<a class="btn btn-white btn-lg" href="/">GO BACK</a>
 
 {% endblock %}
