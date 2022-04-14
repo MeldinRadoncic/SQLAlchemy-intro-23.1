@@ -3,14 +3,17 @@
 
 {% block content %}
 
-<h1 class="display-1">My name is:</h1>
+<h1 class="display-1">I am</h1>
 
 <!-- List user information from DB -->
 <ul>
 <li>FIRST NAME: {{user.first_name}}</li>
 <li>LAST NAME: {{user.last_name}}</li>
-<li><a href="{{user.image_url}}">PHOTO</a></li>
+
+<img width="100px" height="100px" src="https://www.freeiconspng.com/uploads/icon-user-blue-symbol-people-person-generic--public-domain--21.png" alt="">
 </ul>
+
+
 
 
 <!-- Edit and Delete buttons form -->
@@ -20,5 +23,16 @@
     <a class="btn btn-white btn-lg" href="/">GO BACK</a>
   </form>
 
+
+  <h1 class="display-1">Posts</h1>
+  <ul>
+    {% for p in post %}
+    <li><a href="/posts/{{p.id}}">{{p.title}}</a>
+      <small>{{ post.date_time }}</small>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <a class="btn btn-primary btn-lg" href="/{{user.id}}/posts/new">Add a Post</a>
 
 {% endblock %}

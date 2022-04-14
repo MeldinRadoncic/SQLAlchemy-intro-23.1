@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Show Posts {%endblock%}
+
+{% block content%}
+
+<h3 class="display-3">Title</h3>
+<h5>{{post.title}}</h5>
+
+<h6>{{post.content}}</h6>
+
+<p><i>By {{ user.first_name }}
+    {{user.last_name}}
+    on {{ post.created_at }}
+  </i></p> 
+
+  <!-- Edit and Delete button on show post page -->
+<form class="form-group">
+    <button class="btn btn-info btn-lg" formaction="/posts/{{post.id}}/edit" formmethod="GET">EDIT</button>
+    <button class="btn btn-danger btn-lg" formaction="/posts/{{post.id}}/delete" formmethod="POST">DELETE</button>
+    <a class="btn btn-white btn-lg" href="/{{post.id}}">GO BACK</a>
+  </form>
+
+
+
+{% endblock %}
