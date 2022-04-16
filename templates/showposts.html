@@ -13,6 +13,17 @@
     on {{ post.created_at }}
   </i></p> 
 
+  <!-- show all tags -->
+  {% if post.tags %}
+<p>
+  <b>Tags:</b>
+  {% for tag in post.tags %}
+  <a href="/tag/{{ tag.id }}"><i class="badge badge-primary">{{ tag.name }}</i></a>
+  {% endfor %}
+</p>
+{% endif %}
+
+
   <!-- Edit and Delete button on show post page -->
 <form class="form-group">
     <button class="btn btn-info btn-lg" formaction="/posts/{{post.id}}/edit" formmethod="GET">EDIT</button>

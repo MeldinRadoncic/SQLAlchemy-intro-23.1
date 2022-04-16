@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} New Tag  {%endblock%}
+
+
+{% block content %}
+
+<h1 class="display-1">Create Tag</h1>
+
+<form action="/{{user.id}}/tag/new" method="POST">
+    <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control form-control-md type="text" name="tagName" id="name">
+    <button class="btn btn-lg btn-primary mt-3">Create</button>
+    <a class="btn btn-lg btn-info mt-3" href="/{{user.id}}">Go Back</a>
+</div>
+</form>
+
+{% endblock %}

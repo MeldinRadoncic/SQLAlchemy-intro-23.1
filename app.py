@@ -2,7 +2,7 @@
 
 from turtle import position
 from flask import Flask,render_template,request,redirect,flash
-from models import db, connect_db,User,Post
+from models import db, connect_db,User,Post,Tag,PostTag
 from flask_toastr import Toastr
 
 app = Flask(__name__)
@@ -37,7 +37,9 @@ def find_user(user_id):
         flash("There is no such user")
         return redirect("/")
     post = Post.query.filter_by(user_id=user_id)
-    return render_template("user-info.html", user=user,post=post)
+    tag = Tag.query.all()
+    return render_template("user-info.html", user=user,post=post,tag=tag)
+
 
 # Get the add-user Form
 @app.route("/add-user")
@@ -168,5 +170,75 @@ def posts_destroy(post_id):
     db.session.delete(post)
     db.session.commit()
     flash(f"Post '{post.title} deleted.")
+
+    return redirect("/")
+
+########################################################################
+########################################################################
+
+# TAGS
+
+# Getting form form add-tag.html
+@app.route('/<int:user_id>/tag/new')
+def get_add_tag(user_id):
+    user = User.query.get(user_id)
+    posts = Post.query.all()
+    return render_template("add-tag.html", user=user,posts=posts)
+
+# Getting Data from add-tag.html form
+@app.route('/<int:user_id>/tag/new', methods=["POST"])
+def post_tag(user_id):
+    name = request.form["tagName"]
+    user = User.query.get(user_id)
+    
+    if user is not None:
+        tag = Tag(name = name)
+        db.session.add(tag)
+        db.session.commit()
+        flash(f"Tag '{tag.name}' added.")
+        return redirect(f"/{user.id}")
+    else:
+        flash(f"Invalid user {user_id}")
+        return redirect("/")
+
+# Show all the tags 
+@app.route('/tag/<int:tag_id>')
+def show_tags(tag_id):
+    
+    tag = Tag.query.get_or_404(tag_id)
+    return render_template("/show-tags.html", tag=tag)
+
+# Show edit-tag page
+@app.route('/tag/<int:tag_id>/edit')
+def edit_tags_form(tag_id):
+    tag = Tag.query.get(tag_id)
+    posts = Post.query.all()
+    return render_template("edit-tags.html", tag=tag, posts=posts)
+
+  # Update and save changes on tag      
+@app.route('/tag/<int:tag_id>/edit', methods=["POST"])
+def tags_edit(tag_id):
+
+    tag = Tag.query.get_or_404(tag_id)
+    tag.name = request.form['name']
+    post_ids = [int(num) for num in request.form.getlist("posts")]
+    tag.posts = Post.query.filter(Post.id.in_(post_ids)).all()
+    if tag is not None:
+        db.session.add(tag)
+        db.session.commit()
+        flash(f"Tag '{tag.name}' edited.")
+        return redirect("/")
+    else:
+        flash("Tag not found")
+        return redirect('/')
+
+# Delete tag
+@app.route('/tag/<int:tag_id>/delete', methods=["POST"])
+def tags_destroy(tag_id):
+
+    tag = Tag.query.get_or_404(tag_id)
+    db.session.delete(tag)
+    db.session.commit()
+    flash(f"Tag '{tag.name}' deleted.")
 
     return redirect("/")

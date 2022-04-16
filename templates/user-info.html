@@ -33,6 +33,19 @@
     {% endfor %}
   </ul>
 
-  <a class="btn btn-primary btn-lg" href="/{{user.id}}/posts/new">Add a Post</a>
+  <a class="btn btn-primary btn-lg" href="/{{user.id}}/posts/new">Add Post</a>
+
+  <!-- Tags -->
+  <h1 class="display-1">Tags</h1>
+  
+  <ul>
+    {% for t in tag %}
+    <li><a href="/tag/{{t.id}}">{{t.name}}</a></li>
+    {% endfor %}
+  </ul>
+
+  <a class="btn btn-lg btn-primary" href="/{{user.id}}/tag/new">Add Tag</a>
+
+
 
 {% endblock %}
